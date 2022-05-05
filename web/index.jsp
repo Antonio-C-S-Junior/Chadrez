@@ -1,17 +1,22 @@
-<%-- 
-    Document   : index
-    Created on : 31/03/2022, 12:54:24
-    Author     : yBlackSpider
---%>
-
+<%@page import="Db.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%  String ErrorMessege = null;
+    ArrayList<User> list = new ArrayList<>();
+    try{
+    list = User.getList(); 
+}catch(Exception e){
+    ErrorMessege = e.getMessage();
+}
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Chádrez</title>
+        <title id="t1"> Projeto - Quiz </title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="WEB-INF/JSPF/menu.jspf" %>
+        
     </body>
 </html>
