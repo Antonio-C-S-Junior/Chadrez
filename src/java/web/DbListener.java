@@ -32,16 +32,18 @@ public class DbListener implements ServletContextListener {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users("                   
                     + "login VARCHAR(20) UNIQUE NOT NULL, "
                     + "name VARCHAR(200) NOT NULL, "
-                    + "password_hash LONG NOT NULL "
+                    + "password_hash LONG NOT NULL, "
+                    + "victory LONG, "
+                    + "lose LONG "
                     + ")");
             if(User.getList().isEmpty()){
                 step = "default users creations";
                 stmt.executeUpdate("INSERT INTO users VALUES("
-                        + "'antonio', 'Antonio Carlos', "+"1234".hashCode()+")");
+                        + "'antonio', 'Antonio Carlos', "+"1234".hashCode()+", 0"+", 0"+")");
                 stmt.executeUpdate("INSERT INTO users VALUES("
-                        + "'allan', 'Allan', "+"123".hashCode()+")");
+                        + "'allan', 'Allan', "+"123".hashCode()+ ", 0"+", 0"+")");
                 stmt.executeUpdate("INSERT INTO users VALUES("
-                        + "'admin', 'Administrador', "+"123456".hashCode()+")");
+                        + "'admin', 'Administrador', "+"123456".hashCode()+", 0"+", 0"+")");
             }
         }catch(Exception ex){
             exceptionMessage = step + ": " + ex.getMessage();

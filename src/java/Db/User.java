@@ -20,6 +20,7 @@ import web.DbListener;
 public class User {
     private String login;
     private String name;
+    private int victory;
     
     public static ArrayList<User> getList() throws Exception{
         ArrayList<User> list = new ArrayList<>();
@@ -28,7 +29,7 @@ public class User {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from users");
         while (rs.next()) {
-            list.add(new User(rs.getString("login"), rs.getString("name")));
+            list.add(new User(rs.getString("login"), rs.getString("name"), rs.getInt("victory")));
             }
         
         rs.close();
@@ -49,7 +50,8 @@ public class User {
         if(rs.next()){
             user = new User(
                     rs.getString("login"), 
-                    rs.getString("name")
+                    rs.getString("name"), 
+                    Integer.parseInt(rs.getString("victory"))
             );
         }
         rs.close();
@@ -69,7 +71,8 @@ public class User {
         if(rs.next()){
             user = new User(
                     rs.getString("login"), 
-                    rs.getString("name")
+                    rs.getString("name"), 
+                    Integer.parseInt(rs.getString("victory"))
             );
         }
         rs.close();
@@ -90,9 +93,10 @@ public class User {
         con.close();
     }
     
-    public User(String login, String name) {
+    public User(String login, String name, int victory) {
         this.login = login;
         this.name = name;
+        this.victory = victory;
     }
 
     public String getName() {
@@ -109,5 +113,13 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+    
+    public int getVictory (int victory){
+        return victory;
+    }
+    
+    public void setVictory (int victory){
+        this.victory = victory;
     }
 }

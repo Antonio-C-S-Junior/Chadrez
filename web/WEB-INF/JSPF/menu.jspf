@@ -23,7 +23,6 @@
     }else if(request.getParameter("session.logoff")!=null){
         session.removeAttribute("user.login");
         session.removeAttribute("user.name");
-        session.removeAttribute("user.role");
         response.sendRedirect(request.getRequestURI());
     }
 %>
@@ -37,6 +36,7 @@
         Usuário: <input type="text" name="user.login"/>
         Password: <input type="password" name="user.password"/>
         <input type="submit" value="LogIn" name="session.login"/>
+        <a href="<%=request.getContextPath()%>/cadastro.jsp">Cadastre-se</a>
     </form>
     <%if(loginError != null){%>
     <div style="color:red"><%= loginError %></div>
@@ -44,7 +44,7 @@
 <%}else{%>
     <form>
         <a href="<%=request.getContextPath()%>/index.jsp">INÍCIO</a>
-        || Bem vindo, <b><a href="<%=request.getContextPath()%>/me.jsp"><%= session.getAttribute("user.name") %></a></b>
+        || Bem vindo, <b><a href="<%=request.getContextPath()%>/perfil.jsp"><%= session.getAttribute("user.name") %></a></b>
         <input type="submit" value="LogOff" name="session.logoff"/>
     </form>
 <%}%>
